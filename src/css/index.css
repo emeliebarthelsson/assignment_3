@@ -1,0 +1,15 @@
+.container {
+    width: 100%;
+    height: 70vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: var(--spacing-x-large);
+    padding: var(--spacing-small);
+}
+
+h1 {
+    font-family: "Poppins-Bold", sans-serif;
+    font-size: var(--font-size-h1);
+}

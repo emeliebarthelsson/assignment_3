@@ -3,3 +3,10 @@
     margin: 0;
     padding: 0;
 }
+
+a {
+    text-decoration: none;
+    font-size: var(--font-size-body);
+    color: var(--secondary-color);
+    cursor: pointer;
+}

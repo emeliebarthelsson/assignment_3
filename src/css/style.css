@@ -16,29 +16,19 @@ body {
     font-family: "Poppins-Regular", sans-serif;
     background-color: var(--primary-color);
     color: var(--secondary-color);
-    padding: var(--spacing-small);
-}
-
-h1 {
-    margin-bottom: var(--spacing-large);
-}
-
-h2 {
-    font-family: "Poppins-Bold", sans-serif;
-    font-size: var(--font-size-h2);
-    margin-bottom: var(--spacing-medium);
 }
 
 button {
     width: 100%;
     height: 2.5rem;
     border-radius: var(--border-radius);
-    margin-bottom: var(--spacing-small);
     font-size: var(--font-size-body);
+    cursor: pointer;
 }
 
 .secondary-button {
     border: 1px solid var(--button-color);
+    margin-bottom: var(--spacing-small);
 }
 
 .secondary-button:hover {

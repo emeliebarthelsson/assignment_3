@@ -1,0 +1,13 @@
+h2 {
+    font-family: "Poppins-Bold", sans-serif;
+    font-size: var(--font-size-h2);
+    margin-bottom: var(--spacing-medium);
+}
+
+.container {
+    padding: var(--spacing-small);
+}
+
+p {
+    margin-bottom: var(--spacing-x-large);
+}
