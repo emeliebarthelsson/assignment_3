@@ -13,3 +13,9 @@ h1 {
     font-family: "Poppins-Bold", sans-serif;
     font-size: var(--font-size-h1);
 }
+
+@media screen and (min-width: 480px){
+    button {
+        width: 200px;
+    }
+}

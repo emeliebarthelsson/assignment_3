@@ -5,9 +5,33 @@ h2 {
 }
 
 .container {
-    padding: var(--spacing-small);
+    padding: var(--spacing-medium) var(--spacing-small);
 }
 
 p {
     margin-bottom: var(--spacing-x-large);
+}
+
+@media screen and (min-width: 480px) {
+    .container {
+        padding: 5rem 5rem;
+    }
+}
+
+@media screen and (min-width: 768px) {
+    .container {
+        padding: 5rem 10rem;
+    }
+}
+
+@media screen and (min-width: 1024px) {
+    .container {
+        padding: 5rem 20rem;
+    }
+}
+
+@media screen and (min-width: 1440px) {
+    .container {
+        padding: 5rem 30rem;
+    }
 }
