@@ -23,7 +23,6 @@ button {
     height: 2.5rem;
     border-radius: var(--border-radius);
     font-size: var(--font-size-body);
-    cursor: pointer;
     background: transparent;
 }
 

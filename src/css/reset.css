@@ -10,3 +10,7 @@ a {
     color: var(--secondary-color);
     cursor: pointer;
 }
+
+button {
+    cursor: pointer;
+}

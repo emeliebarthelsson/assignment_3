@@ -31,7 +31,7 @@ const questions = [
     {
         question: "Which sea borders Sweden to the east?",
         answers: ["North Sea", "Baltic Sea", "Atlantic Ocean"],
-        correctAnswer: "Baltic sea"
+        correctAnswer: "Baltic Sea"
     }, 
     {
         question: "Which is Sweden's longest river?",
@@ -77,17 +77,19 @@ showQuestion()
 
 document.querySelectorAll(".answer-button").forEach((button) => {
     button.addEventListener("click", (event) => {
-        const selectedAnswer = event.target.textContent;
-        const currentQuestion = questions[currentQuestionIndex];
-
-        if (selectedAnswer === currentQuestion.correctAnswer) {
-            score++;
-        }
+        selectedAnswer = event.target.textContent;
     });
 });
 
 function nextQuestion() {
+    const currentQuestion = questions[currentQuestionIndex];
+    
+    if (selectedAnswer.toLowerCase() === currentQuestion.correctAnswer.toLowerCase()) {
+        score++;
+    }
+
     currentQuestionIndex++;
+    
     if (currentQuestionIndex < questions.length) {
         showQuestion();
     } else {
@@ -108,15 +110,15 @@ function showResult() {
     const resultHeading = document.createElement("h2");
     const resultElement = document.createElement("div");
 
-    if (score > 5 && score < 8) {
+    if (score > 3 && score < 8) {
         resultHeading.textContent = `Good job!`;
         resultElement.textContent = `You got ${score} / ${questions.length} correct answers 🥳`;
     } else if (score >= 8) {
         resultHeading.textContent = `Wohoo!`;
         resultElement.textContent = `You got ${score} / ${questions.length} correct answers 🥳`;
     } else {
-        resultHeading.textContent = `Better luck next time!`;
-        resultElement.textContent = `You got ${score} / ${questions.length} correct answers 🎉`;
+        resultHeading.textContent = `You don't like to read huh?`;
+        resultElement.textContent = `You got ${score} / ${questions.length} correct answers 🤪`;
     }
 
     document.querySelector(".question-container").appendChild(resultHeading);
