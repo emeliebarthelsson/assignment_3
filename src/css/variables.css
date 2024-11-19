@@ -1,4 +1,5 @@
 :root {
+    /* color */
     --primary-color: #e6e6e6;
     --secondary-color: #2b2b2b;
 
@@ -6,14 +7,17 @@
     --button-color-hover: #7fa3e6;
     --button-color-active: #729ae3;
     
+    /* font size */
     --font-size-h1: 3rem; 
     --font-size-h2: 1.5rem;
     --font-size-body: 1rem;
 
+    /* spacing */
     --spacing-small: 1.5rem;
     --spacing-medium: 2rem;
     --spacing-large: 2.5rem;
     --spacing-x-large: 5rem;
 
+    /* border radius */
     --border-radius: 2rem;
 }

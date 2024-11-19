@@ -27,17 +27,22 @@ button {
     background: transparent;
 }
 
-.secondary-button {
+.answer-button {
     border: 1px solid var(--button-color);
     margin-bottom: var(--spacing-small);
 }
 
-.secondary-button:hover {
+.answer-button:hover {
     background: var(--button-color-hover);
     border: 1px solid var(--button-color-hover);
 }
 
-.secondary-button:active {
+.answer-button:active {
+    background: var(--button-color-active);
+    border: 1px solid var(--button-color-active);
+}
+
+.answer-button:focus {
     background: var(--button-color-active);
     border: 1px solid var(--button-color-active);
 }

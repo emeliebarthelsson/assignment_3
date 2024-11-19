@@ -8,7 +8,9 @@ h2 {
     padding: var(--spacing-medium) var(--spacing-small);
 }
 
-p {
+.top-content {
+    display: flex;
+    justify-content: space-between;
     margin-bottom: var(--spacing-x-large);
 }
 

@@ -52,3 +52,73 @@ const questions = [
 
 let currentQuestionIndex = 0;
 let score = 0;
+
+function questionCounter() {
+    const counterElement = document.querySelector(".counter");
+    counterElement.textContent = `${currentQuestionIndex + 1} / ${questions.length}`;
+}
+
+function showQuestion() {
+    const questionElement = document.querySelector(".question");
+    const answerButtons = document.querySelectorAll(".answer-button");
+
+    const currentQuestion = questions[currentQuestionIndex];
+
+    questionElement.textContent = currentQuestion.question;
+
+    answerButtons.forEach((button, index) => {
+        button.textContent = currentQuestion.answers[index];
+    });
+
+    questionCounter();
+};
+
+showQuestion()
+
+document.querySelectorAll(".answer-button").forEach((button) => {
+    button.addEventListener("click", (event) => {
+        const selectedAnswer = event.target.textContent;
+        const currentQuestion = questions[currentQuestionIndex];
+
+        if (selectedAnswer === currentQuestion.correctAnswer) {
+            score++;
+        }
+    });
+});
+
+function nextQuestion() {
+    currentQuestionIndex++;
+    if (currentQuestionIndex < questions.length) {
+        showQuestion();
+    } else {
+        showResult();
+    }
+};
+
+document.querySelector(".primary-button").addEventListener("click", nextQuestion);
+
+function showResult() {
+    document.querySelector(".counter").style.display = "none";
+    document.querySelector(".question").style.display = "none";
+    document.querySelectorAll(".answer-button").forEach((button) => {
+        button.style.display = "none";
+    });
+    document.querySelector(".primary-button").style.display = "none";
+
+    const resultHeading = document.createElement("h2");
+    const resultElement = document.createElement("div");
+
+    if (score > 5 && score < 8) {
+        resultHeading.textContent = `Good job!`;
+        resultElement.textContent = `You got ${score} / ${questions.length} correct answers 🥳`;
+    } else if (score >= 8) {
+        resultHeading.textContent = `Wohoo!`;
+        resultElement.textContent = `You got ${score} / ${questions.length} correct answers 🥳`;
+    } else {
+        resultHeading.textContent = `Better luck next time!`;
+        resultElement.textContent = `You got ${score} / ${questions.length} correct answers 🎉`;
+    }
+
+    document.querySelector(".question-container").appendChild(resultHeading);
+    document.querySelector(".button-container").appendChild(resultElement);
+};
