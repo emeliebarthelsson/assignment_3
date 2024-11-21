@@ -5,40 +5,70 @@ h2 {
     margin-bottom: var(--spacing-medium);
 }
 
-.container {
+main {
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     padding: var(--spacing-medium) var(--spacing-small);
+}
+
+section {
+    width: 100%;
 }
 
 .top-content {
     display: flex;
     justify-content: space-between;
+    padding-top: var(--spacing-small);
     margin-bottom: var(--spacing-x-large);
+}
+
+.review-container {
+    margin-bottom: var(--spacing-small);
+}
+
+.review__question {
+    font-family: "Poppins-Bold", sans-serif;
 }
 
 /* mobile large */
 @media screen and (min-width: 480px) {
-    .container {
-        padding: 5rem 5rem;
+    section {
+        width: 80%;
     }
 }
 
 /* tablet */
 @media screen and (min-width: 768px) {
-    .container {
-        padding: 5rem 10rem;
+    main {
+        padding: var(--spacing-large) var(--spacing-medium);
+    }
+
+    section {
+        width: 60%;
+        padding-top: var(--spacing-x-large);
     }
 }
 
 /* desktop small */
 @media screen and (min-width: 1024px) {
-    .container {
-        padding: 5rem 20rem;
+    section {
+        width: 50%;
+    }
+}
+
+/* desktop medium */
+@media screen and (min-width: 1280px) {
+    section {
+        width: 40%;
     }
 }
 
 /* desktop large */
 @media screen and (min-width: 1440px) {
-    .container {
-        padding: 5rem 30rem;
+    section {
+        width: 30%;
     }
 }

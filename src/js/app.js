@@ -54,6 +54,8 @@ const questions = [
 // set initial index and value
 let currentQuestionIndex = 0;
 let score = 0;
+let userAnswers = [];
+let selectedAnswer = null;
 
 // function for question counter
 function questionCounter() {
@@ -87,28 +89,45 @@ document.querySelectorAll(".answer-button").forEach((button) => {
     });
 });
 
-// function to show the next question (or result) and increase score if correct answer
+// function to show the next question (or result), save users answer and increase score if correct answer
 function nextQuestion() {
     const currentQuestion = questions[currentQuestionIndex];
     
-    if (selectedAnswer.toLowerCase() === currentQuestion.correctAnswer.toLowerCase()) {
+    // save users answer in the empty array
+    userAnswers.push({
+        question: currentQuestion.question,
+        correctAnswer: currentQuestion.correctAnswer,
+        userAnswer: selectedAnswer
+    });
+
+    if (selectedAnswer === currentQuestion.correctAnswer) {
         score++;
     }
 
     currentQuestionIndex++;
+
+    // change last button to submit
+    if (currentQuestionIndex === questions.length - 1) {
+      document.querySelector(".primary-button").textContent = "Submit";
+    }
     
     if (currentQuestionIndex < questions.length) {
         showQuestion();
     } else {
         showResult();
     }
+
+    // reset for next question
+    selectedAnswer = null;
 };
 
 // calling next question 
 document.querySelector(".primary-button").addEventListener("click", nextQuestion);
 
-// function to hide elements and create new to show result
 function showResult() {
+    // add restart option
+    document.querySelector("a").textContent = "Restart Sweden Quiz";
+    
     // hide elements 
     document.querySelector(".counter").style.display = "none";
     document.querySelector(".question").style.display = "none";
@@ -120,8 +139,12 @@ function showResult() {
     // create elements
     const resultHeading = document.createElement("h2");
     const resultElement = document.createElement("div");
+    const reviewButton = document.createElement("button");
+    reviewButton.classList.add("primary-button");
+    reviewButton.textContent = "Review";
+    reviewButton.style.marginTop = "10rem";
 
-    // result options
+    // create result options
     if (score > 3 && score < 8) {
         resultHeading.textContent = `Good job!`;
         resultElement.textContent = `You got ${score} / ${questions.length} correct answers 🥳`;
@@ -135,5 +158,47 @@ function showResult() {
 
     // add result in the containers 
     document.querySelector(".question-container").appendChild(resultHeading);
-    document.querySelector(".button-container").appendChild(resultElement);
+    document.querySelector(".button-container").append(resultElement, reviewButton);
+
+    // add event listener to review answers
+    reviewButton.addEventListener("click", reviewAnswers);
+};
+
+// function to show question, users answer and correct answer
+function reviewAnswers() {
+    // hide elements
+    document.querySelector(".question-container").style.display = "none"
+    document.querySelector(".button-container").style.display = "none"
+
+    const container = document.querySelector(".container");
+    container.textContent = "";
+
+    // create elements and append title
+    const reviewTitle = document.createElement("h2");
+    reviewTitle.textContent = "Review your answers";
+    container.appendChild(reviewTitle);
+
+    // loop through users answers
+    userAnswers.forEach((item, index) => {
+        // create elements
+        const reviewItem = document.createElement("div");
+        reviewItem.classList.add("review-container");
+
+        const questionText = document.createElement("p");
+        questionText.classList.add("review__question");
+
+        const answerText = document.createElement("p");
+        answerText.style.color = item.userAnswer === item.correctAnswer ? "green" : "red";
+
+        const correctAnswerText = document.createElement("p");
+
+        // create content
+        questionText.textContent = `${item.question}`;
+        answerText.textContent = `Your answer: ${item.userAnswer ? item.userAnswer : "No answer"}`;
+        correctAnswerText.textContent = `Correct answer: ${item.correctAnswer}`;
+
+        // add content
+        reviewItem.append(questionText, answerText, correctAnswerText);
+        container.appendChild(reviewItem);
+    });
 };
