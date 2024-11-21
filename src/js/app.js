@@ -1,3 +1,4 @@
+// array of quiz objects
 const questions = [
     {
         question: "What is Sweden's largest island?",
@@ -50,37 +51,43 @@ const questions = [
     }
 ];
 
+// set initial index and value
 let currentQuestionIndex = 0;
 let score = 0;
 
+// function for question counter
 function questionCounter() {
     const counterElement = document.querySelector(".counter");
     counterElement.textContent = `${currentQuestionIndex + 1} / ${questions.length}`;
 }
 
+// function to show the question and answer options
 function showQuestion() {
     const questionElement = document.querySelector(".question");
     const answerButtons = document.querySelectorAll(".answer-button");
 
     const currentQuestion = questions[currentQuestionIndex];
-
     questionElement.textContent = currentQuestion.question;
 
     answerButtons.forEach((button, index) => {
         button.textContent = currentQuestion.answers[index];
     });
 
+    // update question counter
     questionCounter();
 };
 
+// starts the quiz with first question
 showQuestion()
 
+// event listener for answer
 document.querySelectorAll(".answer-button").forEach((button) => {
     button.addEventListener("click", (event) => {
         selectedAnswer = event.target.textContent;
     });
 });
 
+// function to show the next question (or result) and increase score if correct answer
 function nextQuestion() {
     const currentQuestion = questions[currentQuestionIndex];
     
@@ -97,9 +104,12 @@ function nextQuestion() {
     }
 };
 
+// calling next question 
 document.querySelector(".primary-button").addEventListener("click", nextQuestion);
 
+// function to hide elements and create new to show result
 function showResult() {
+    // hide elements 
     document.querySelector(".counter").style.display = "none";
     document.querySelector(".question").style.display = "none";
     document.querySelectorAll(".answer-button").forEach((button) => {
@@ -107,9 +117,11 @@ function showResult() {
     });
     document.querySelector(".primary-button").style.display = "none";
 
+    // create elements
     const resultHeading = document.createElement("h2");
     const resultElement = document.createElement("div");
 
+    // result options
     if (score > 3 && score < 8) {
         resultHeading.textContent = `Good job!`;
         resultElement.textContent = `You got ${score} / ${questions.length} correct answers 🥳`;
@@ -121,6 +133,7 @@ function showResult() {
         resultElement.textContent = `You got ${score} / ${questions.length} correct answers 🤪`;
     }
 
+    // add result in the containers 
     document.querySelector(".question-container").appendChild(resultHeading);
     document.querySelector(".button-container").appendChild(resultElement);
 };

@@ -15,9 +15,19 @@ h1 {
     font-size: var(--font-size-h1);
 }
 
+a {
+    width: 90%;
+    height: 2.5rem;
+    border-radius: var(--border-radius);
+    font-size: var(--font-size-body);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 /* mobile large */
 @media screen and (min-width: 480px){
-    button {
+    a {
         width: 200px;
     }
 }
